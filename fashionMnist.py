@@ -1,5 +1,8 @@
 import tensorflow as tf
 from draw import draw_results
+from callback import Callback
+
+callbacks = Callback()
 
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (train_images, train_labels), (test_images,
@@ -30,7 +33,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-model.fit(train_images, train_labels, epochs=5)
+model.fit(train_images, train_labels, epochs=5, callbacks=[callbacks])
 
 loss, accuracy = model.evaluate(test_images, test_labels)
 
